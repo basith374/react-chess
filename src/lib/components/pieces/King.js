@@ -1,3 +1,19 @@
+import { getOptionsFromMoves } from "../ChessBoard";
+
+export function kingMoves(file, row, board) {
+  const moves = [
+    [-1, -1],
+    [-1, 1],
+    [1, -1],
+    [1, 1],
+    [1, 0],
+    [0, 1],
+    [-1, 0],
+    [0, -1],
+  ];
+  return getOptionsFromMoves(file, row, moves, board);
+}
+
 export default function King({ black }) {
   return (
     <svg viewBox="0 0 26.458 26.458">

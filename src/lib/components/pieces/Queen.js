@@ -1,3 +1,19 @@
+import { getOptionsFromDirections } from "../ChessBoard";
+
+export function queenMoves(file, row, board) {
+  const directions = [
+    [-1, -1],
+    [-1, 1],
+    [1, -1],
+    [1, 1],
+    [1, 0],
+    [0, 1],
+    [-1, 0],
+    [0, -1],
+  ];
+  return getOptionsFromDirections(file, row, directions, board);
+}
+
 export default function Queen({ black }) {
   return (
     <svg viewBox="0 0 26.458 26.458">

@@ -1,3 +1,39 @@
+import { findPositionFromMove, identifyPiece } from "../ChessBoard";
+
+export function pawnMoves(file, row, board) {
+  const options = [];
+  const piece = identifyPiece(board[file + row]);
+  const nextRow = row + (piece.black ? 1 : -1);
+  // forwards
+  const moves = [file + nextRow];
+  // two squares
+  if (!piece.black && row === 7 && !board[file + 6]) moves.push(file + 5);
+  if (piece.black && row === 2 && !board[file + 3]) moves.push(file + 4);
+  moves.forEach((move) => {
+    let targetPiece = identifyPiece(board[move]);
+    if (targetPiece) return;
+    options.push(move);
+  });
+  // attacks
+  const attackMoves = piece.black
+    ? [
+        [-1, 1],
+        [1, 1],
+      ]
+    : [
+        [-1, -1],
+        [1, -1],
+      ];
+  attackMoves.forEach((move) => {
+    const newPosition = findPositionFromMove(file, row, move).join("");
+    let targetPiece = identifyPiece(board[newPosition]);
+    if (targetPiece) {
+      if (targetPiece.black !== piece.black) options.push(newPosition);
+    }
+  });
+  return options;
+}
+
 export default function Pawn({ black }) {
   return (
     <svg viewBox="0 0 26.458 26.458">
