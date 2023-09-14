@@ -12,6 +12,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
+  padding: 8px;
 `;
 
 export default function Piece({ type, black, select, selected }) {
