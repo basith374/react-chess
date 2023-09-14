@@ -1,26 +1,22 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import styled from "styled-components";
 import Piece from "./Piece";
 import { GAME_START, MOVES, PIECES } from "./pieces";
 
 const Board = styled.div`
-  border: 2px solid #000;
-  width: max-content;
+  height: 100vmin;
+  width: 100vmin;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
 `;
 
 const Square = styled.div`
-  width: 100px;
-  height: 100px;
   background: ${(props) => {
     if (props.isAttack) return "#FF8C7C";
     if (props.isOption) return "#5efca1";
     if (props.black) return "#000";
   }};
-  border: 2px solid ${(props) => (props.black ? "#000" : "#fff")};
-`;
-
-const Row = styled.div`
-  display: flex;
 `;
 
 export function identifyPiece(piece) {
@@ -124,7 +120,7 @@ export default function ChessBoard() {
     <Board>
       {ROWS.map((r) => {
         return (
-          <Row key={r}>
+          <Fragment key={r}>
             {FILES.map((f, i) => {
               const black = i % 2 === (r % 2 === 0 ? 1 : 0);
               const key = f + r;
@@ -154,7 +150,7 @@ export default function ChessBoard() {
                 </Square>
               );
             })}
-          </Row>
+          </Fragment>
         );
       })}
     </Board>
