@@ -4,7 +4,7 @@ A simple chess game built using React. This project features a fully interactive
 
 ## Demo
 
-Check out the live demo: [react-chess.basithkunimal.online](https://react-chess.basithkunimal.online)
+Check out the live demo [here](https://basith374.github.io/react-chess)
 
 ## Features
 
